@@ -6,7 +6,8 @@ locals {
 module "ecr" {
   source = "terraform-aws-modules/ecr/aws"
 
-  repository_name = "${local.service}-${local.env}"
+  repository_name                 = "${local.service}-${local.env}"
+  repository_image_tag_mutability = "MUTABLE"
 
   repository_lifecycle_policy = jsonencode({
     rules = [

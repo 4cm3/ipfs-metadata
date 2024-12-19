@@ -9,8 +9,15 @@ RUN go mod tidy
 RUN go build -o /ipfs_fetcher
 
 ## Using a smaller image to run our application
-FROM scratch
+FROM alpine:3.21
 WORKDIR /
+
+RUN addgroup -S app && adduser -S app -G app
+USER app
+
+COPY data/ipfs_cids.csv /data/ipfs_cids.csv
+COPY .env /.env
 COPY --from=build /ipfs_fetcher /ipfs_fetcher
 EXPOSE 8080
+
 ENTRYPOINT ["/ipfs_fetcher"]
