@@ -1,12 +1,12 @@
 locals {
-  service     = "ipfs-metadata"
-  environment = "dev"
+  service = "ipfs-metadata"
+  env     = "dev"
 }
 
 module "ecr" {
   source = "terraform-aws-modules/ecr/aws"
 
-  repository_name = "${local.service}-${local.environment}"
+  repository_name = "${local.service}-${local.env}"
 
   repository_lifecycle_policy = jsonencode({
     rules = [
@@ -27,7 +27,17 @@ module "ecr" {
   })
 
   tags = {
-    Terraform   = "true"
-    Environment = local.environment
+    Terraform = "true"
+    env       = local.env
+  }
+}
+
+resource "aws_ssm_parameter" "ecr_image" {
+  name  = "/ipfs/${local.env}/ecr_image"
+  type  = "SecureString"
+  value = "CHANGEME"
+
+  lifecycle {
+    ignore_changes = [value]
   }
 }
