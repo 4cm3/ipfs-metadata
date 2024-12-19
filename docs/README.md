@@ -1,5 +1,7 @@
 # ipfs-metadata
 
+
+
 ## Build and run application
 ## CI/CD pipeline
 
@@ -14,4 +16,7 @@ AWS_DEFAULT_REGION
 ```
 
 ## Deploy infrastructure with terraform
+
+Detailed documentation can be found in [../infrastructure/README.md](../infrastructure/README.md)
+
 ## Deploy application

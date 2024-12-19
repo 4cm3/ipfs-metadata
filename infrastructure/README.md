@@ -1,6 +1,6 @@
 # Infrastructure repo
 
-Simple repo to keep track of infra changes for the project
+Simple repo to keep track of infra changes for the project.
 
 ## Prerequisites
 
@@ -11,7 +11,7 @@ Simple repo to keep track of infra changes for the project
 Based on this: https://developer.hashicorp.com/terraform/language/backend/s3
 
 * Create a bucket for each env (check infrastructure/dev/ecr/providers.tf to find/change the file name)
-* Create the DynamoDB table for keeping locks
+* Create the DynamoDB table for keeping locks.
 
 ## Deploy infrastructure
 
@@ -20,3 +20,4 @@ You need to go to each of these directories and run `terraform apply` in the sam
 * ecr/
 * vpc/
 * rds/
+* ecs/

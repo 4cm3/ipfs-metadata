@@ -25,13 +25,17 @@ module "rds" {
   identifier                     = "${local.name}-${local.env}"
   instance_use_identifier_prefix = true
 
-  create_db_option_group    = false
-  create_db_parameter_group = false
+  parameters = [
+    {
+      name  = "rds.force_ssl"
+      value = "0"
+    },
+  ]
 
   engine               = "postgres"
   engine_version       = "16"
-  family               = "postgres16" # DB parameter group
-  major_engine_version = "16"         # DB option group
+  family               = "postgres16"
+  major_engine_version = "16"
   instance_class       = "db.t3.micro"
 
   allocated_storage = 20
