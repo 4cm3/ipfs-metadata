@@ -37,5 +37,4 @@ jobs:
         run: |
           docker build -t $REGISTRY/$REPOSITORY:$TAG .
           docker push $REGISTRY/$REPOSITORY:$TAG
-      - name: save-ecr-image-url-to-ssm
-        run: aws ssm put-parameter --name "/ipfs/${{ inputs.environment }}/ecr_image" --value "$REGISTRY/$REPOSITORY:$TAG" --type "SecureString" --overwrite
+          aws ssm put-parameter --name "/ipfs/${{ inputs.environment }}/ecr_image" --value "$REGISTRY/$REPOSITORY:$TAG" --type "SecureString" --overwrite
