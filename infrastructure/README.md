@@ -21,3 +21,5 @@ You need to go to each of these directories and run `terraform apply` in the sam
 * vpc/
 * rds/
 * ecs/
+
+ECS already includes a task definion with a image stored in SSM. So be sure to run apply code from `ecr/` first and then run a build of https://github.com/4cm3/ipfs-metadata/actions/workflows/build-and-push-container.yml
