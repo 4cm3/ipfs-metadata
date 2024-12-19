@@ -52,7 +52,7 @@ module "ecs_service" {
       cpu       = 512
       memory    = 1024
       essential = true
-      image     = "537124965915.dkr.ecr.us-west-2.amazonaws.com/ipfs-metadata-dev:3"
+      image     = data.aws_ssm_parameter.ecr_image.value
       environment = [
         {
           name  = "POSTGRES_USER"
@@ -162,6 +162,10 @@ data "aws_secretsmanager_secret" "rds_password" {
 
 data "aws_secretsmanager_secret_version" "rds_password" {
   secret_id = data.aws_secretsmanager_secret.rds_password.id
+}
+
+data "aws_ssm_parameter" "ecr_image" {
+  name = data.terraform_remote_state.ecr.outputs.aws_ssm_parameter
 }
 
 resource "aws_service_discovery_http_namespace" "this" {
