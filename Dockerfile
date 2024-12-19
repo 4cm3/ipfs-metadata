@@ -16,7 +16,7 @@ RUN addgroup -S app && adduser -S app -G app
 USER app
 
 COPY data/ipfs_cids.csv /data/ipfs_cids.csv
-COPY .env /.env
+COPY .env.empty /.env
 COPY --from=build /ipfs_fetcher /ipfs_fetcher
 EXPOSE 8080
 
